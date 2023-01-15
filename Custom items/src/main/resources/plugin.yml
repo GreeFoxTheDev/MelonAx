@@ -1,6 +1,0 @@
-name: Custom Items
-version: '${project.version}'
-main: customitems.customitems.CustomItems
-api-version: 1.19
-authors: [ GreeFox ]
-description: Adds variety of new irems!
