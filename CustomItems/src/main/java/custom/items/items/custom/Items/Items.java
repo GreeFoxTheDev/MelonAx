@@ -35,6 +35,7 @@ public class Items extends JavaPlugin {
         ShapedRecipe sr = new ShapedRecipe(NamespacedKey.minecraft("compressed_melon0"), item);
         sr.shape("XXX", "XXX", "XXX");
         sr.setIngredient('X', Material.MELON);
+        Bukkit.getServer().addRecipe(sr);
     }
     public static ItemStack compressedMelon1;
     //second compression
