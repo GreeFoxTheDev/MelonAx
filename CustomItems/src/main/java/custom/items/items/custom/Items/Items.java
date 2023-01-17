@@ -20,22 +20,23 @@ public class Items extends JavaPlugin {
         createCompressedMelon3();
         createCompressedMelon4();
         createMelonAx();
+        createSlice();
     }
     public static ItemStack compressedMelon;
     //first compression
     private static void createCompressedMelon(){
-        ItemStack item = new ItemStack(Material.MELON, 1);
-        ItemMeta im = item.getItemMeta();
-        im.setDisplayName("§fA little compressed melon");
-        List<String> lores = new ArrayList<String>();
-        lores.add("§5Little bit compressed melon.");
-        im.setLore(lores);
-        item.setItemMeta(im);
-        compressedMelon = item;
-        ShapedRecipe sr = new ShapedRecipe(NamespacedKey.minecraft("compressed_melon0"), item);
-        sr.shape("XXX", "XXX", "XXX");
-        sr.setIngredient('X', Material.MELON);
-        Bukkit.getServer().addRecipe(sr);
+        ItemStack item = new ItemStack(Material.MELON, 1); //material
+        ItemMeta im = item.getItemMeta(); //sets itemmeta for later purposes
+        im.setDisplayName("§fA little compressed melon"); //sets the name
+        List<String> lores = new ArrayList<String>(); //sets string for lores
+        lores.add("§5Little bit compressed melon."); //the actual lore
+        im.setLore(lores); //sets the lore
+        item.setItemMeta(im); //sets the Meta
+        compressedMelon = item; //says that compressedMelon is item I define before
+        ShapedRecipe sr = new ShapedRecipe(NamespacedKey.minecraft("compressed_melon0"), item); //recipe
+        sr.shape("XXX", "XXX", "XXX"); //shape of recipe, in rows
+        sr.setIngredient('X', Material.MELON); //Ingredient
+        Bukkit.getServer().addRecipe(sr); //of course adds the recipe to plugin
     }
     public static ItemStack compressedMelon1;
     //second compression
@@ -60,7 +61,7 @@ public class Items extends JavaPlugin {
     private static void createCompressedMelon2(){
         ItemStack item = new ItemStack(Material.MELON, 1);
         ItemMeta im = item.getItemMeta();
-        im.setDisplayName("§l§aKinda goodly compressed melon.");
+        im.setDisplayName("§a§lKinda goodly compressed melon.");
         List<String> lores = new ArrayList<String>();
         lores.add("§5You are taking MelonAx seriously");
         lores.add("§5and making kinda good progress!");
@@ -111,6 +112,27 @@ public class Items extends JavaPlugin {
         sr.setIngredient('X', new RecipeChoice.ExactChoice(compressedMelon3));
         Bukkit.addRecipe(sr);
     }
+    public static ItemStack melonSlice;
+    private static void createSlice(){
+        ItemStack item = new ItemStack(Material.GLISTERING_MELON_SLICE, 1);
+        ItemMeta im = item.getItemMeta();
+        im.setDisplayName("§f§lFINAL SLICE");
+        List<String> lores = new ArrayList<String>();
+        lores.add("§5Right Click to see it c:");
+        im.setLore(lores);
+
+        im.addEnchant(Enchantment.LUCK, 1, true);
+        im.addEnchant(Enchantment.DAMAGE_ALL, 3, true);
+        im.addEnchant(Enchantment.FIRE_ASPECT, 1, true);
+        im.addEnchant(Enchantment.KNOCKBACK, 5, true);
+        //im.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        item.setItemMeta(im);
+        melonSlice = item;
+        ShapedRecipe sr = new ShapedRecipe(NamespacedKey.minecraft("melon_slice"), item);
+        sr.shape("   ", " X ", "   ");
+        sr.setIngredient('X', new RecipeChoice.ExactChoice(compressedMelon4));
+        Bukkit.getServer().addRecipe(sr);
+    }
     public static ItemStack melonAx;
     private static void createMelonAx(){
         ItemStack item = new ItemStack(Material.NETHERITE_AXE, 1);
@@ -120,12 +142,24 @@ public class Items extends JavaPlugin {
         lores.add("§3This axe is made of"); //lore, line 1
         lores.add("§3REALLY compressed melons!"); //lore, line 2
         im.setLore(lores); //add the lores of course
+        im.setUnbreakable(true);
+        im.setCustomModelData(1);
+        im.addEnchant(Enchantment.ARROW_INFINITE, 10, true);
         im.addEnchant(Enchantment.DIG_SPEED, 10, true);
         im.addEnchant(Enchantment.DAMAGE_ALL, 5, false);
+        im.addEnchant(Enchantment.SILK_TOUCH, 10, true);
+
+        //im.addEnchant(Enchantment.LUCK, 1, false);
         item.setItemMeta(im);
         melonAx = item;
-        SmithingRecipe smr = new SmithingRecipe(NamespacedKey.minecraft("melon_ax"), item,
+        /*SmithingRecipe smr = new SmithingRecipe(NamespacedKey.minecraft("melon_ax"), item,
                 new RecipeChoice.MaterialChoice(Material.NETHERITE_AXE), new RecipeChoice.ExactChoice(compressedMelon4));
-        Bukkit.getServer().addRecipe(smr);
+        Bukkit.getServer().addRecipe(smr);*/ //doesn't work for some reason
+        ShapedRecipe sr = new ShapedRecipe(NamespacedKey.minecraft("melon_ax_craft"), item);
+        sr.shape("XXX", "XYX", " Z ");
+        sr.setIngredient('X', new RecipeChoice.ExactChoice(compressedMelon4));
+        sr.setIngredient('Y', Material.STICK);
+        sr.setIngredient('Z', Material.NETHERITE_INGOT);
+        Bukkit.getServer().addRecipe(sr);
     }
 }
