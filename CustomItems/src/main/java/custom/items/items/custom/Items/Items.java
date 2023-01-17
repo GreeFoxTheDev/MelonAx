@@ -120,9 +120,8 @@ public class Items extends JavaPlugin {
         lores.add("§3This axe is made of"); //lore, line 1
         lores.add("§3REALLY compressed melons!"); //lore, line 2
         im.setLore(lores); //add the lores of course
-        im.addEnchant(Enchantment.DIG_SPEED, 10, false);
+        im.addEnchant(Enchantment.DIG_SPEED, 10, true);
         im.addEnchant(Enchantment.DAMAGE_ALL, 5, false);
-        im.addEnchant(Enchantment.LUCK, 1, false);
         item.setItemMeta(im);
         melonAx = item;
         SmithingRecipe smr = new SmithingRecipe(NamespacedKey.minecraft("melon_ax"), item,
